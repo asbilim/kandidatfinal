@@ -9,6 +9,9 @@ export default function Main() {
   // Step 1: Initialize react-hook-form
   const { handleSubmit, register, errors,watch } = useForm();
 
+  const backenHost = process.env.NEXT_PUBLIC_BACKEND_URL
+  console.log(backenHost)
+
   // Step 2: Create a function to handle form submission
   const onSubmit = async (data) => {
       
@@ -19,7 +22,7 @@ export default function Main() {
       
       try {
        
-        const response = await axios.post('http://localhost:8000/auth/register/', finalData);
+        const response = await axios.post(backenHost+'/auth/register/', finalData);
         console.log('Form submitted successfully!', response.data);
         toast.success('user account created successfully')
       } catch (error) {

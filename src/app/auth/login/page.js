@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Cookies } from "react-cookie"
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Main() {
   // Step 1: Initialize react-hook-form
@@ -14,7 +14,7 @@ export default function Main() {
 
   // Step 2: Create a function to handle form submission
   const onSubmit = async (data) => {
-      
+      const backenHost = process.env.NEXT_PUBLIC_BACKEND_URL
       console.log(data)
       const username = data.username
       const password = data.password
@@ -22,12 +22,13 @@ export default function Main() {
       const cookie = new Cookies()
       try {
        
-        const response = await axios.post('http://localhost:8000/auth/jwt/create', finalData);
+        const response = await axios.post(backenHost+'/auth/jwt/create', finalData);
         console.log('Form submitted successfully!', response.data);
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 7);
         const cookieOptionsForDomain = { expires: expirationDate, path: '/'}
-        cookie.set('auth',response.access,cookieOptionsForDomain)
+    
+        cookie.set('auth',response.data.access,cookieOptionsForDomain)
         toast.success('login successful')
         router.replace('/')
       } catch (error) {
