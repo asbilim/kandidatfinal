@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Cookies } from "react-cookie"
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Main() {
   // Step 1: Initialize react-hook-form
@@ -88,6 +89,7 @@ export default function Main() {
                     Login
                   </button>
                 </div>
+                <h2 className='text-base-content my-4'>don't have an account? <Link className='underline' href="/auth/register/">Register</Link></h2>
               </form>
             </div>
           </div>

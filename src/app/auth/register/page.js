@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 export default function Main() {
   // Step 1: Initialize react-hook-form
@@ -97,6 +98,7 @@ export default function Main() {
                     Create account
                   </button>
                 </div>
+                <h2 className='text-base-content my-4'>already having an account? <Link className='underline' href="/auth/login/">Login</Link></h2>
               </form>
             </div>
           </div>
